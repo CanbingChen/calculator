@@ -1,0 +1,178 @@
+<html>
+<head>
+
+    <style>
+        *
+        {
+            padding: 0px;
+            margin: 0px;
+        }
+        .box
+        {
+            width:540px;
+            height:500px;
+            border: 1px solid red;
+            background-color: #000000;
+            margin: 50px auto;
+            box-shadow:0 0 10px black ;
+        }
+        .box .title
+        {
+            color: white;
+            font-size: 18px;
+            font-family:Î¢ÈíÑÅºÚ ;
+            text-indent: 30px;
+            margin-top: 10px;
+
+        }
+        .box .num
+        {
+            width: 490px;
+            height: 50px;
+            background-color: white;
+            margin: 0px auto;
+            border-radius:5px;
+            font-size: 50px;
+            text-align: right;
+            line-height: 50px;
+        }
+        .box .btn
+        {
+            width: 490px;
+            height: 300px;
+            margin: 30px auto;
+        }
+        .box .btn ul li
+        {
+            width: 80px;
+            height: 60px;
+            font-size: 50px;
+            list-style: none;
+            float: left;;
+            background-color: blue;
+            margin:12px 9px;
+            border-radius:5px;
+            font-family:Arial;
+            text-align: center;
+            color: #fff;
+            line-height: 60px;
+            background: #212121;
+            cursor: pointer;
+            box-shadow:0 0 10px white ;
+            opacity: 0.8;
+        }
+        .box .btn ul li:hover
+        {
+            opacity: 1;
+        }
+        .box .btn ul li.color
+        {
+            background-color: salmon;
+        }
+        .box .btn ul li.color1
+        {
+            background-color: gold;
+        }
+        .box .div
+        {
+            color: white;
+            font-size: 18px;
+            font-family:Î¢ÈíÑÅºÚ ;
+            text-indent: 30px;
+            margin-top: 47px;
+        }
+    </style >
+</head>
+<body>
+<div class="box">
+    <p class="title">¼ÆËãÆ÷</p>
+    <div class="num" id="root">0</div>
+    <div class="btn">
+        <ul>
+            <li onclick="omg(7)" >7</li>
+            <li onclick="omg(8)">8</li>
+            <li onclick="omg(9)">9</li>
+            <li class="color" onclick="lete1 ('j')"  >¡û</li>
+            <li class="color" onclick="lete('x')">C</li>
+            <li onclick="omg(4)">4</li>
+            <li onclick="omg(5)">5</li>
+            <li onclick="omg(6)">6</li>
+            <li class="color" onclick="math('*','j')">*</li>
+            <li class="color" onclick="math('¡Â','j')">¡Â</li>
+            <li onclick="omg(3)">3</li>
+            <li onclick="omg(2)">2</li>
+            <li onclick="omg(1)">1</li>
+            <li class="color" onclick="math('-','j')">-</li>
+            <li class="color" onclick="math('+','j')">+</li>
+            <li onclick="omg(0)">0</li>
+            <li onclick="omg2(00)">00</li>
+            <li onclick="omg('.')">.</li>
+            <li class="color" onclick="math('%','j')">%</li>
+            <li class="color1" onclick="equal('g')">=</li>
+            </ul>
+    </div>
+    <div class="bottom"></div>
+    <p class="div"> CCB´´×÷</p>
+    </div>
+<audio src="wav/7.wav " id="voic"></audio>
+<script src="js/jquery-1.11.1.min.js "></script>
+<script type="text/javascript " >
+    var ccb=false;
+    var con=document.getElementById ('root');
+    function omg(num)
+    {
+        var str=con.innerHTML ;
+        str=(str==0?"":str);
+        str+=num;
+        con.innerHTML =str;
+        play(num);
+        ccb=true;
+    }
+    function omg2(num)
+    {
+        for(var i=0;i<2;i++)
+        omg(num);
+    }
+    function math(n,m)
+    {
+        if(ccb) {
+            var tr = con.innerHTML;
+            tr = (tr == 0 ? "" : tr);
+            con.innerHTML = tr + n;
+            play(m);
+        }
+        ccb=false;
+    }
+    function equal(c)
+    {
+        var str=con.innerHTML ;
+        var r=eval(str);
+        con.innerHTML=r ;
+        play(c);
+    }
+    var lete=function(x)
+    {
+        con.innerHTML=0;
+        play(x);
+    }
+    function lete1(l)
+    {
+        var z=con.innerHTML.length;
+       var x=con.innerHTML.substring(0,z-1).toString ();
+        con.innerHTML =x;
+        if(con.innerHTML =="")
+        {
+            con.innerHTML=0;
+        }
+        play(l);
+    }
+
+function play(i)
+{
+    var number=document.getElementById ('voic');
+    number.src="wav/"+i+".wav";
+    number.play();
+}
+</script>
+</body>
+</html>
